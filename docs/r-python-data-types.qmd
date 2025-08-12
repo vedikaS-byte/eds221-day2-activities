@@ -23,9 +23,7 @@ format: html
 
 -   R vs Python: Indexing is different! R uses ***1-index*** while Python uses ***0-index***.
 
--   Things can be accessed based on [r,c] for a matrix or data frame.
-
-
+-   Things can be accessed based on \[r,c\] for a matrix or data frame.
 
 ```{r}
 dogs <- c("teddy", "khora", "waffle", "banjo")
@@ -81,3 +79,32 @@ x[c(T,F,T,F,F,T)]
 
 ```
 
+```{r}
+#subsetting and assigning multiple values 
+x <- 1:5
+x[c(1,2)] <- 2:3 # must have same number you want to replace with
+
+x[-1] <- 4:1
+x[-1]
+
+
+#subset rows in dataframes based on conditions (logical subsetting)
+mtcars[mtcars$gear == 5,]
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
+
+#short hand
+subset(mtcars, gear == 5)
+subset(mtcars, gear == 5 & cyl == 4)
+
+# now remove columns
+df <- data.frame(x = 1:3, y = 3:1, z = c("a", "b", "c"))
+
+df$z <- NULL
+head(df$z)
+
+df[c("x", "y")]
+
+setdiff(names(df), "z")
+df[setdiff(names(df),"z")]
+
+```
