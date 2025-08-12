@@ -3,3 +3,80 @@ title: "r_data_types"
 format: html
 ---
 
+#Exploring data manipulation
+Here, we will explore how to manipulate and subset data using baseR and tidyverse functions. We will also use ggplot2 to visualize newly subsetted data frames from existing ones.
+
+
+### Checking data frames: Vectors, lists & data frames
+This section observes how to manipulate vectors and other data types. Vectors can be indexed and subsetted without functions using the '[,]'. **Refer to the comments line by line for additional information**
+
+```{r}
+vec1 <- c(2, 5, 9, 10, 8, 12, 1, 0)
+class(vec1) # class is "numeric"
+typeof(vec1) # vec1 is considered a "double"
+
+# use indexing to store the third value in vec1 in a new variable
+vec_1_e3 <- vec1[3]
+vec_1_e3
+
+# Access the 1st element and store as vec_1_e1
+vec_1_e1 <- vec1[1]
+vec_1_e1
+
+# Access the 5th through 7th elements and store as vec_1_e5to7
+vec_1_e5to7 <- vec1[5:7]
+vec_1_e5to7
+
+# Reassign vec_1 as a character using as.character, stored as vec_1_char. What does the output look like?
+vec_1_char <- as.character(vec1)
+vec_1_char # now each 
+
+```
+*Create a vector called vec_2*
+```{r}
+vec_2 <- c(town = "Santa Barbara", location = "Rincon", swell = "south")
+vec_2
+
+# What is the class of vector elements? class()
+class(vec_2) #character
+
+# What is the length of vec_2?
+length(vec_2) # three observations long
+
+# Access the 2nd element by name and store as vec_2_e2
+vec_2_e2 <- vec_2[2]
+vec_2_e2
+
+
+```
+
+*Create a data frame in R*
+Write code to create a data frame called df_1:
+```{r}
+df_1 <- data.frame(region = c("A","B","A", "D"), species = c("otter", "great white", "sea lion", "gray whale"), 
+                  count = c(12,2,36,6))
+
+print(df_1)
+
+# Return the class of the entire data frame
+class(df_1)
+
+# Return the class of the species column
+class(df_1$species)
+
+# Find the maximum value of the count() column, store as max_count
+max_count <- max(df_1$count)
+max_count
+
+```
+
+
+# Wild Data 
+
+```{r}
+mack_verts <- read.csv(here::here("data", "AS00601.csv"))
+head(mack_verts)
+
+
+```
+
