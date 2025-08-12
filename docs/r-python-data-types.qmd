@@ -9,7 +9,7 @@ format: html
 
 -   **Atomic Vectors**
 
-***Heterogenous***
+***Heterogeneous***
 
 -   **Lists**: Different data types for storage are possible. Most commonly seen as output since can be easier accessed. More flexible than vectors, but can be difficult to work with.
 
@@ -23,4 +23,60 @@ format: html
 
 -   R vs Python: Indexing is different! R uses ***1-index*** while Python uses ***0-index***.
 
+-   Things can be accessed based on [r,c] for a matrix or data frame.
+
+
+
+```{r}
+dogs <- c("teddy", "khora", "waffle", "banjo")
+
+class(dogs)
+typeof(dogs)
+
+weights <- c(50,55,25,35)
+class(weights) 
+typeof(weights) 
+
+```
+
+```{r}
+fish_size <- matrix(c(0.8, 1.2, 0.4, 0.9), ncol = 2, nrow = 2, byrow =F)
+fish_size[,2]
+fish_size[1,2]
+fish_size[1,]
+
+#lists
+urchins <- list("blue", c(1,2,3), c("a cat", "a dog"), 5L)
+urchins
+
+#accessing data in a list
+urchins[2]
+#treats each vector separately
+urchins[[2]] # index into elements of vectors
+
+# each vector is same size in this list, so meets requirements for data frame
+tacos <- list(toppings = c("onions", "cilantro", "guacomole"), filling = c("beans", "meat", "veggies"), 
+              price = c(6.75, 8.25, 9.50))
+
+tacos[2]
+tacos[[2]]
+tacos$filling
+
+
+
+fruit <- data.frame(type = c("apple", "banana", "peach"), mass = c(130, 195, 150))
+fruit
+class(fruit)
+typeof(fruit)
+
+# now select multiple elements 
+x <- 1:10
+x[c(3,1,5)] #reshuffle
+x[c(1,1,1)] #duplicated, picking value with 1
+x[c(1.2,5.4,7.2)] # truncate like integers to index, but can also sometimes be very literal
+x[-c(2,4,6,8,10)] #remove, but cannot mix positive and negative numbers
+x[c(-1,2)]
+x[c(T,F,T,F,F,T)]
+
+```
 

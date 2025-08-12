@@ -94,10 +94,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>#Exploring data manipulation Here, we will explore how to manipulate and subset data using baseR and tidyverse functions. We will also use ggplot2 to visualize newly subsetted data frames from existing ones.</p>
+<section id="exploring-data-manipulation" class="level1">
+<h1>Exploring data manipulation</h1>
+<p>Here, we will explore how to manipulate and subset data using baseR and tidyverse functions. We will also use ggplot2 to visualize newly subsetted data frames from existing ones.</p>
 <section id="checking-data-frames-vectors-lists-data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="checking-data-frames-vectors-lists-data-frames">Checking data frames: Vectors, lists &amp; data frames</h3>
-<p>This section observes how to manipulate vectors and other data types. Vectors can be indexed and subsetted without functions using the ‘[,]’. <strong>Refer to the comments line by line for additional information</strong></p>
+<p>This section observes how to manipulate vectors and other data types. Vectors can be indexed and subsetted without functions using the ‘[]’. <strong>Refer to the comments line by line for additional information</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec1) <span class="co"># class is "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -190,6 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+</section>
 <section id="wild-data" class="level1">
 <h1>Wild Data</h1>
 <div class="cell">
@@ -211,6 +214,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5        NA    ONCL      93      NA   6.90 NONE 1987-10-07      
 6        NA    ONCL      86      NA   5.90 NONE 1987-10-07      </code></pre>
 </div>
+</div>
+</section>
+<section id="wrangling-and-exploring" class="level1">
+<h1>Wrangling and exploring</h1>
+<p>The column names can be updated to reflect cleaner naming. Then, we can use different methods of subsetting and indexing to look up species observations in different columns.</p>
+<p>Update the variable names in mack_verts to lower snake case</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>mack_verts <span class="ot">&lt;-</span> mack_verts <span class="sc">%&gt;%</span> <span class="fu">clean_names</span>()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mack_verts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "dbcode"     "entity"     "year"       "sitecode"   "section"   
+ [6] "reach"      "pass"       "unitnum"    "unittype"   "vert_index"
+[11] "pitnumber"  "species"    "length1"    "length2"    "weight"    
+[16] "clip"       "sampledate" "notes"     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the 5th value in column “WEIGHT” as mc_wt_5. Check by looking at your data frame to confirm.</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>mc_wt_5 <span class="ot">&lt;-</span> mack_verts<span class="sc">$</span>weight[<span class="dv">5</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>mc_wt_5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the 8th - 20th value in the “LENGTH1” column as mc_length_8_20. Check by looking at your data frame to confirm.</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mc_length_8_20 <span class="ot">&lt;-</span> mack_verts<span class="sc">$</span>length1[<span class="dv">8</span><span class="sc">:</span><span class="dv">20</span>]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>mc_length_8_20</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 131 103 117 100 127  99 111 149 102  53  58  58 105</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store everything in column SAMPLEDATE as a vector called mc_dates</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>mc_dates <span class="ot">&lt;-</span> mack_verts<span class="sc">$</span>sampledate</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mc_dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1987-10-07" "1987-10-07" "1987-10-07" "1987-10-07" "1987-10-07"
+[6] "1987-10-07"</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-a-salamander-subset" class="level1">
+<h1>Creating a salamander subset</h1>
+<p>Use the dplyr package to subset the data only for observations for Pacific Giant Salamanders (species Dicamptodon tenebrosus, stored in species as DITE).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mack_verts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "dbcode"     "entity"     "year"       "sitecode"   "section"   
+ [6] "reach"      "pass"       "unitnum"    "unittype"   "vert_index"
+[11] "pitnumber"  "species"    "length1"    "length2"    "weight"    
+[16] "clip"       "sampledate" "notes"     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mc_salamanders <span class="ot">&lt;-</span> mack_verts <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"DITE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-a-scatterplot-of-salamander-length-vs-weight" class="level1">
+<h1>Create a scatterplot of salamander length vs weight</h1>
+<p>Now, perform some data visualization on our new subsetted data frame to observe how length and weight of salamander relate to each other.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>mc_salamanders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> length1, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">size =</span> .<span class="dv">9</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">col =</span> <span class="st">"darkred"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Snout-vent length (millimeters)"</span>, <span class="at">y =</span> <span class="st">"Weight (grams)"</span>, <span class="at">title =</span> <span class="st">"Pacific Giant Salamander Snout-Vent Length Related To Individual Weight"</span>, <span class="at">caption =</span> <span class="st">"Data courtesy of EDI Data Portal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_data_types_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"salamander_size.png"</span>, <span class="at">path =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"figs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, create a subset called mc_trout that only contains observations for cutthroat trout (species “ONCL”)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mc_trout <span class="ot">&lt;-</span> mack_verts <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"ONCL"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mc_trout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  dbcode entity year sitecode section reach pass unitnum unittype vert_index
+1  AS006      1 1987 MACKCC-L      CC     L    1       1        R          1
+2  AS006      1 1987 MACKCC-L      CC     L    1       1        R          2
+3  AS006      1 1987 MACKCC-L      CC     L    1       1        R          3
+4  AS006      1 1987 MACKCC-L      CC     L    1       1        R          4
+5  AS006      1 1987 MACKCC-L      CC     L    1       1        R          5
+6  AS006      1 1987 MACKCC-L      CC     L    1       1        R          6
+  pitnumber species length1 length2 weight clip sampledate notes
+1        NA    ONCL      58      NA   1.75 NONE 1987-10-07      
+2        NA    ONCL      61      NA   1.95 NONE 1987-10-07      
+3        NA    ONCL      89      NA   5.60 NONE 1987-10-07      
+4        NA    ONCL      58      NA   2.15 NONE 1987-10-07      
+5        NA    ONCL      93      NA   6.90 NONE 1987-10-07      
+6        NA    ONCL      86      NA   5.90 NONE 1987-10-07      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(<span class="fu">factor</span>(mc_trout<span class="sc">$</span>reach))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "L" "M" "U"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot of length1 by weight for all trout in the dataset</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize so that the point color depends on reach</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkblue"</span>, <span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>mc_trout <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> length1, <span class="at">y =</span> weight, <span class="at">col =</span> <span class="fu">factor</span>(reach))) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">size =</span> .<span class="dv">9</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">method =</span> lm) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span> <span class="fu">theme_bw</span>()  <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Length (millimeters)"</span>, <span class="at">y =</span> <span class="st">"Weight (grams)"</span>, <span class="at">title =</span> <span class="st">"Cutthroat Trout Length Related To Individual Weight By Creek Path"</span>, <span class="at">caption =</span> <span class="st">"Data courtesy of EDI Data Portal"</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">factor</span>(reach)) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">col =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r_data_types_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"cutthroat_size.png"</span>, <span class="at">path =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"figs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
