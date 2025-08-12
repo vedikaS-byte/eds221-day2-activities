@@ -36,6 +36,7 @@ typeof(dogs)
 weights <- c(50,55,25,35)
 class(weights) 
 typeof(weights) 
+x[x>3] #here, go through element and see if > 3, then return that vector
 
 ```
 
