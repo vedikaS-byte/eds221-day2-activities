@@ -8,7 +8,7 @@ Here, we will explore how to manipulate and subset data using baseR and tidyvers
 
 
 ### Checking data frames: Vectors, lists & data frames
-This section observes how to manipulate vectors and other data types. Vectors can be indexed and subsetted without functions using the '[,]'. **Refer to the comments line by line for additional information**
+This section observes how to manipulate vectors and other data types. Vectors can be indexed and subsetted without functions using the '[]'. **Refer to the comments line by line for additional information**
 
 ```{r}
 vec1 <- c(2, 5, 9, 10, 8, 12, 1, 0)
@@ -76,7 +76,6 @@ max_count
 ```{r}
 mack_verts <- read.csv(here::here("data", "AS00601.csv"))
 head(mack_verts)
-
 
 ```
 

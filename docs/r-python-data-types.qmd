@@ -1,0 +1,26 @@
+---
+title: "r-python-data-types"
+format: html
+---
+
+# Data Structures
+
+***Homogeneous***
+
+-   **Atomic Vectors**
+
+***Heterogenous***
+
+-   **Lists**: Different data types for storage are possible. Most commonly seen as output since can be easier accessed. More flexible than vectors, but can be difficult to work with.
+
+-   **Matrices**: Two dimensional arrangement of values (m x n).
+
+-   **Data frames**: Stores data efficiently in an organized manner. Essentially a list of equal length vectors (like a matrix but structured better).
+
+## Accessing and subsetting elements
+
+**Indexing: Accessing elements from different data structures**
+
+-   R vs Python: Indexing is different! R uses ***1-index*** while Python uses ***0-index***.
+
+
